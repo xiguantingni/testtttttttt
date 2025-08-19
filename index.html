@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Frame-Options" content="ALLOW-FROM *">
+    <title>接口请求结果</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        #result-container {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="result-container">加载中...</div>
+
+    <script>
+        $(document).ready(function() {
+          console.log('ready---------');
+          console.log(deviceId);
+            // 这里替换成你的实际API端点
+            const apiUrl = 'https://jsonplaceholder.typicode.com/posts/1';
+            
+            $.ajax({
+                url: apiUrl,
+                method: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    // 显示API返回的数据
+                    $('#result-container').text(JSON.stringify(data, null, 2));
+                },
+                error: function(error) {
+                    // 显示错误信息
+                    $('#result-container').text('请求失败: ' + error.statusText);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
